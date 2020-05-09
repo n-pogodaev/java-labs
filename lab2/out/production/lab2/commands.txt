@@ -1,8 +1,0 @@
-DEFINE a 4
-PUSH a
-PUSH a
-PUSH a
-+
-PRINT
-POP
-PRINT

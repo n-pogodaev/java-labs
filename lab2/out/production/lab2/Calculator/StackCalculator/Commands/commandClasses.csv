@@ -1,9 +1,0 @@
-POP,Calculator.StackCalculator.Commands.PopCommand
-PUSH,Calculator.StackCalculator.Commands.PushCommand
-+,Calculator.StackCalculator.Commands.SumCommand
--,Calculator.StackCalculator.Commands.SubCommand
-*,Calculator.StackCalculator.Commands.MulCommand
-/,Calculator.StackCalculator.Commands.DivCommand
-SQRT,Calculator.StackCalculator.Commands.SqrtCommand
-PRINT,Calculator.StackCalculator.Commands.PrintCommand
-DEFINE,Calculator.StackCalculator.Commands.DefineCommand
