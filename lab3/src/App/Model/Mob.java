@@ -21,7 +21,7 @@ public abstract class Mob {
         this.attack = attack;
         this.armor = armor;
         this.speed = speed;
-        direction = Direction.LEFT;
+        direction = Direction.RIGHT;
         this.positionX = positionX;
         this.attackRange = attackRange;
         this.positionY = positionY;
@@ -56,13 +56,8 @@ public abstract class Mob {
         return health <= 0;
     }
 
-    public boolean setDirection(Direction d) {
-        if (state == States.MOVING && d != direction) {
-            state = States.IDLE;
-            return false;
-        }
+    public void setDirection(Direction d) {
         direction = d;
-        return true;
     }
 
     public Direction getDirection() {
@@ -103,9 +98,9 @@ public abstract class Mob {
     }
 
     public void setState(States state) {
-        switch (state) {
+        if (this.state != States.DIED || state == States.DIED) {
+            this.state = state;
         }
-        this.state = state;
     }
 
     private void moveLeft() {
@@ -139,7 +134,6 @@ public abstract class Mob {
 
     public void update() {
         if (state == States.MOVING) {
-            System.out.println(positionX + " ");
             move();
         }
     }

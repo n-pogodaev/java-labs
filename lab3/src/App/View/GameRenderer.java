@@ -3,6 +3,8 @@ package App.View;
 import App.Model.Model;
 import App.Utils.Buttons;
 import App.View.Game.GameContent;
+import App.View.Game.KnightView;
+import App.View.Game.LevelView;
 import App.View.MenuPanels.*;
 import javafx.scene.layout.Background;
 
@@ -119,13 +121,23 @@ public class GameRenderer implements Renderer {
     }
 
     @Override
-    public void updateGameView(Model model) {
-        gameContent.update(model);
+    public void updateGameView() {
+        gameContent.update();
     }
 
     @Override
     public void addGameListener(KeyListener listener) {
         gameContent.addKeyListener(listener);
+    }
+
+    @Override
+    public KnightView getKnightView() {
+        return gameContent.getKnightView();
+    }
+
+    @Override
+    public LevelView getCurrentLevelView() {
+        return gameContent.getCurrentLevelView();
     }
 
     public static int getGameLevelWidth() {

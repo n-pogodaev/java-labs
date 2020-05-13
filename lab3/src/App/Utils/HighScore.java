@@ -38,7 +38,7 @@ public class HighScore {
         try {
             writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(scoresFileName)));
             for (int i = 0; i < scoresCount; ++i) {
-                writer.write(scores[i]);
+                writer.write(Integer.toString(scores[i]));
                 writer.newLine();
             }
         } catch (IOException e) {

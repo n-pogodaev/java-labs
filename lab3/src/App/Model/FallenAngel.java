@@ -1,7 +1,7 @@
 package App.Model;
 
 public class FallenAngel extends Enemy {
-    public FallenAngel(int positionX, int positionY, int maxPositionX) {
-        super(100, 50, 100, 2, 35, positionX, positionY, maxPositionX);
+    public FallenAngel(Knight knight, int positionX, int positionY, int maxPositionX) {
+        super(knight, 100, 20, 100, 2, 140, positionX, positionY, maxPositionX);
     }
 }

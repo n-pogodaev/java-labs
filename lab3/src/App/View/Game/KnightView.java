@@ -8,7 +8,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
-public class KnightView extends MobView {
+public class KnightView extends MainHeroView {
     private static final Image[] attackAnimation = new Image[10];
     private static final Image[] moveAnimation = new Image[10];
     private static final Image[] hurtAnimation = new Image[10];
@@ -20,7 +20,7 @@ public class KnightView extends MobView {
             for (int i = 0; i < 10; ++i) {
                 attackAnimation[i] = ImageIO.read(new File
                         ("src\\App\\Resources\\Knight\\Attack\\Knight_01__ATTACK_00" + i + ".png"))
-                        .getSubimage(710, 170, 715, 520);
+                        .getSubimage(710, 170, 740, 520);
                 moveAnimation[i] = ImageIO.read(new File
                         ("src\\App\\Resources\\Knight\\Move\\Knight_01__WALK_00" + i + ".png"))
                         .getSubimage(710, 170, 715, 520);
@@ -40,7 +40,11 @@ public class KnightView extends MobView {
     }
 
     public KnightView(Knight model) {
-        super(model, moveAnimation, attackAnimation, hurtAnimation, dyingAnimation, idleAnimation,
+        super(model, moveAnimation, 2,
+                attackAnimation, 2,
+                hurtAnimation, 2,
+                dyingAnimation, 2,
+                idleAnimation, 2,
                 GameRenderer.getGameLevelWidth() / 6 , GameRenderer.getGameLevelHeight() / 5);
     }
 }
