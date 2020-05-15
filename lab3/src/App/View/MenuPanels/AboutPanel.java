@@ -1,6 +1,7 @@
 package App.View.MenuPanels;
 
 import App.Utils.ViewUtils;
+import App.View.GameRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,17 +19,15 @@ public class AboutPanel extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        backButton.setPreferredSize(new Dimension(150, 30));
-        backButton.setMinimumSize(new Dimension(120, 15));
-        backButton.setMaximumSize(new Dimension(200, 50));
+        backButton.setPreferredSize(new Dimension(GameRenderer.getFrameWidth() / 7, GameRenderer.getGameLevelHeight() / 18));
+        backButton.setMinimumSize(new Dimension(GameRenderer.getFrameWidth() / 9, GameRenderer.getGameLevelHeight() / 35));
+        backButton.setMaximumSize(new Dimension(GameRenderer.getFrameWidth() / 5, GameRenderer.getGameLevelHeight() / 10));
         backButton.setBorder(BorderFactory.createLineBorder(Color.black, 2));
-        //buttonPanel.add(Box.createRigidArea(new Dimension(400,0)));
         buttonPanel.add(backButton);
         add(Box.createVerticalGlue());
         add(textPanel);
         add(Box.createVerticalGlue());
         add(buttonPanel);
-
     }
     public void addButtonListener(ActionListener al) {
         backButton.addActionListener(al);
@@ -38,9 +37,9 @@ public class AboutPanel extends JPanel {
         public TextPanel() {
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
             setBackground(Color.green.darker().darker());
-            setMaximumSize(new Dimension(600, 450));
-            setPreferredSize(new Dimension(500, 440));
-            setMinimumSize(new Dimension(400, 400));
+            setMaximumSize(new Dimension(GameRenderer.getFrameWidth() * 53 / 100, GameRenderer.getGameLevelHeight() * 2 / 3));
+            setPreferredSize(new Dimension(GameRenderer.getFrameWidth() * 53 / 100, GameRenderer.getGameLevelHeight() * 2 / 3));
+            setMinimumSize(new Dimension(GameRenderer.getFrameWidth() * 53 / 100, GameRenderer.getGameLevelHeight() * 2 / 3));
         }
         @Override
         protected void paintComponent(Graphics g) {

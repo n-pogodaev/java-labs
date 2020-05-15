@@ -81,6 +81,8 @@ public class GameModel implements Model {
         for (Level level : levels) {
             level.reset();
         }
+        currentLevel = levels.get(0);
+        currentLevelCount = 0;
         score = 0;
     }
 
@@ -98,7 +100,13 @@ public class GameModel implements Model {
         currentLevel.update();
         if (currentLevel.isNextLevel()) {
             knight.setPositionX(0);
-            currentLevel = levels.get(++currentLevelCount);
+            if (currentLevelCount < levels.size() - 1) {
+                currentLevel = levels.get(++currentLevelCount);
+            }
+            else {
+                knight.takeDamage(1000);
+                knight.setState(States.DIED);
+            }
         }
     }
 }

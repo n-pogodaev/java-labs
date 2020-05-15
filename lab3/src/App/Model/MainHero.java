@@ -1,6 +1,7 @@
 package App.Model;
 
 import App.Utils.Direction;
+import App.Utils.States;
 
 public class MainHero extends Mob {
     private static final int maxHealth = 200;
@@ -19,6 +20,7 @@ public class MainHero extends Mob {
         resetPositionX();
         setArmor(maxArmor / 5);
         setDirection(Direction.RIGHT);
+        resetState();
     }
 
     @Override

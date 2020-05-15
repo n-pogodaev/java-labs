@@ -21,7 +21,7 @@ public class ReaperView extends EnemyView {
                     attackAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\Reaper\\Attack\\0_Reaper_Man_Slashing_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(200, 150, 600, 600);
+                            .getSubimage(200, 150, 680, 600);
                 }
                 moveAnimation[i] = ImageIO.read(new File
                         ("src\\App\\Resources\\Reaper\\Move\\0_Reaper_Man_Walking_0" +
@@ -37,7 +37,7 @@ public class ReaperView extends EnemyView {
                     hurtAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\Reaper\\Hurt\\0_Reaper_Man_Hurt_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(200, 150, 500, 600);
+                            .getSubimage(160, 150, 540, 600);
                 }
                 if (i < 15) {
                     dyingAnimation[i] = ImageIO.read(new File
@@ -57,6 +57,6 @@ public class ReaperView extends EnemyView {
                 hurtAnimation, 2,
                 dyingAnimation, 2,
                 idleAnimation, 2,
-                GameRenderer.getGameLevelWidth() / 9, GameRenderer.getGameLevelHeight() / 5);
+                GameRenderer.getGameLevelWidth() / 10, GameRenderer.getGameLevelHeight() / 5);
     }
 }

@@ -21,7 +21,7 @@ public class FallenAngelView extends EnemyView {
                     attackAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\FallenAngel\\Attack\\0_Fallen_Angels_Slashing_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(200, 150, 650, 600);
+                            .getSubimage(200, 150, 680, 600);
                 }
                 moveAnimation[i] = ImageIO.read(new File
                         ("src\\App\\Resources\\FallenAngel\\Move\\0_Fallen_Angels_Walking_0" +
@@ -37,7 +37,7 @@ public class FallenAngelView extends EnemyView {
                     hurtAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\FallenAngel\\Hurt\\0_Fallen_Angels_Hurt_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(200, 150, 500, 600);
+                            .getSubimage(160, 150, 540, 600);
                 }
                 if (i < 15) {
                     dyingAnimation[i] = ImageIO.read(new File
@@ -57,6 +57,6 @@ public class FallenAngelView extends EnemyView {
                 hurtAnimation, 2,
                 dyingAnimation, 2,
                 idleAnimation, 2,
-                GameRenderer.getGameLevelWidth() / 9, GameRenderer.getGameLevelHeight() / 5);
+                GameRenderer.getGameLevelWidth() / 10, GameRenderer.getGameLevelHeight() / 5);
     }
 }

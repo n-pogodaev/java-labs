@@ -74,7 +74,12 @@ public abstract class Mob {
             armor -= damageNum;
             return;
         }
-        health -= damageAfterArmor;
+        if (health - damageAfterArmor <= 0) {
+            health = 0;
+        }
+        else {
+            health -= damageAfterArmor;
+        }
     }
 
     public int getPositionX() {
@@ -101,6 +106,10 @@ public abstract class Mob {
         if (this.state != States.DIED || state == States.DIED) {
             this.state = state;
         }
+    }
+
+    public void resetState() {
+        this.state = States.IDLE;
     }
 
     private void moveLeft() {

@@ -54,6 +54,7 @@ public class GameController implements Controller {
                 }
             }
             else {
+                mobView.resetCurrentAnimation();
                 mobView.getModel().setState(States.MOVING);
             }
         }

@@ -2,6 +2,7 @@ package App.View.MenuPanels;
 
 import App.Utils.HighScore;
 import App.Utils.ViewUtils;
+import App.View.GameRenderer;
 import org.w3c.dom.Text;
 
 import javax.swing.*;
@@ -22,9 +23,9 @@ public class HighScoresPanel extends JPanel {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        backButton.setPreferredSize(new Dimension(100, 30));
-        backButton.setMinimumSize(new Dimension(75, 15));
-        backButton.setMaximumSize(new Dimension(150, 50));
+        backButton.setPreferredSize(new Dimension(GameRenderer.getFrameWidth() / 10, GameRenderer.getFrameHeight() / 18));
+        backButton.setMinimumSize(new Dimension(GameRenderer.getFrameWidth() / 14, GameRenderer.getFrameHeight() / 35));
+        backButton.setMaximumSize(new Dimension(GameRenderer.getFrameWidth() / 7, GameRenderer.getFrameHeight() / 11));
         backButton.setBorder(BorderFactory.createLineBorder(Color.black, 2));
         buttonPanel.add(backButton);
         add(Box.createVerticalGlue());
@@ -45,9 +46,9 @@ public class HighScoresPanel extends JPanel {
         public TextPanel() {
             setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
             setBackground(Color.green.darker().darker());
-            setMinimumSize(new Dimension(150, 400));
-            setPreferredSize(new Dimension(200, 415));
-            setMaximumSize(new Dimension(300, 440));
+            setMinimumSize(new Dimension(GameRenderer.getFrameWidth()/ 7, GameRenderer.getFrameHeight() / 20 * 13));
+            setPreferredSize(new Dimension(GameRenderer.getFrameWidth() / 5, GameRenderer.getFrameHeight() / 20 * 13));
+            setMaximumSize(new Dimension(GameRenderer.getFrameWidth() / 10 * 3, GameRenderer.getFrameHeight() / 20 * 13));
         }
         @Override
         protected void paintComponent(Graphics g) {

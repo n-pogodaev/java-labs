@@ -140,6 +140,14 @@ public class GameRenderer implements Renderer {
         return gameContent.getCurrentLevelView();
     }
 
+    public static int getFrameWidth() {
+        return screenWidth;
+    }
+
+    public static int getFrameHeight() {
+        return screenHeight;
+    }
+
     public static int getGameLevelWidth() {
         return screenWidth;
     }

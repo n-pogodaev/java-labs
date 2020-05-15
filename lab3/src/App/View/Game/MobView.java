@@ -103,7 +103,7 @@ public abstract class MobView extends JComponent {
         return currentAnimation.getAnimationType();
     }
 
-    private void resetCurrentAnimation() {
+    public void resetCurrentAnimation() {
         currentAnimation.resetAnimation();
     }
 

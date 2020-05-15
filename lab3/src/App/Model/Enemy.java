@@ -29,6 +29,7 @@ public abstract class Enemy extends Mob {
         setArmor(enemyArmor);
         setPositionX(startPositionX);
         setDirection(Direction.LEFT);
+        resetState();
         setState(States.MOVING);
     }
 

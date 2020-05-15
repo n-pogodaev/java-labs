@@ -9,7 +9,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class GolemView extends EnemyView {
-    private static final Image[] attackAnimation = new Image[12];
+    private static final Image[] attackAnimation = new Image[20];
     private static final Image[] moveAnimation = new Image[24];
     private static final Image[] hurtAnimation = new Image[12];
     private static final Image[] dyingAnimation = new Image[12];
@@ -17,7 +17,7 @@ public class GolemView extends EnemyView {
     static {
         try {
             for (int i = 0; i < 24; ++i) {
-                if (i < 12) {
+                if (i < 20) {
                     attackAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\Golem\\Attack\\0_Golem_Slashing_0" +
                                     i / 10 + "" + i % 10 + ".png"))
@@ -37,13 +37,13 @@ public class GolemView extends EnemyView {
                     hurtAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\Golem\\Hurt\\0_Golem_Hurt_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(200, 230, 500, 530);
+                            .getSubimage(160, 230, 540, 530);
                 }
                 if (i < 12) {
                     dyingAnimation[i] = ImageIO.read(new File
                             ("src\\App\\Resources\\Golem\\Dying\\0_Golem_Dying_0" +
                                     i / 10 + "" + i % 10 + ".png"))
-                            .getSubimage(50, 230, 750, 600);
+                            .getSubimage(50, 150, 750, 680);
                 }
             }
         } catch (IOException e) {
