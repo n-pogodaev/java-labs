@@ -51,18 +51,25 @@ public class GameModel implements Model {
 
     private void initLevels() {
         ArrayList<Enemy> level1Enemies = new ArrayList<>();
-        level1Enemies.add(new Golem(knight, screenWidth / 2, screenHeight - groundLevelHeight, screenWidth));
-        level1Enemies.add(new Golem(knight, screenWidth / 2 + 100, screenHeight - groundLevelHeight, screenWidth));
-        level1Enemies.add(new Golem(knight, screenWidth / 2 + 200, screenHeight - groundLevelHeight, screenWidth));
+        level1Enemies.add(new Golem(knight, screenWidth * 3 / 4, screenHeight - groundLevelHeight, screenWidth));
+        level1Enemies.add(new Golem(knight, screenWidth * 3 / 4 + 100, screenHeight - groundLevelHeight, screenWidth));
+        level1Enemies.add(new Golem(knight, screenWidth * 3 / 4 + 200, screenHeight - groundLevelHeight, screenWidth));
         levels.add(new Level(level1Enemies, knight, screenWidth));
         ArrayList<Enemy> level2Enemies = new ArrayList<>();
-        level2Enemies.add(new FallenAngel(knight, screenWidth / 2, screenHeight - groundLevelHeight, screenWidth));
-        level2Enemies.add(new FallenAngel(knight, screenWidth / 2 + 100, screenHeight - groundLevelHeight, screenWidth));
-        level2Enemies.add(new FallenAngel(knight, screenWidth / 2 + 200, screenHeight - groundLevelHeight, screenWidth));
+        level2Enemies.add(new FallenAngel(knight, screenWidth * 3 / 4, screenHeight - groundLevelHeight, screenWidth));
+        level2Enemies.add(new FallenAngel(knight, screenWidth * 3 / 4 + 100, screenHeight - groundLevelHeight, screenWidth));
+        level2Enemies.add(new FallenAngel(knight, screenWidth * 3 / 4 + 200, screenHeight - groundLevelHeight, screenWidth));
         levels.add(new Level(level2Enemies, knight, screenWidth));
         ArrayList<Enemy> level3Enemies = new ArrayList<>();
-        level3Enemies.add(new Reaper(knight, screenWidth / 3 * 2, screenHeight - groundLevelHeight, screenWidth));
+        level3Enemies.add(new Reaper(knight, screenWidth, screenHeight - groundLevelHeight, screenWidth));
+        level3Enemies.add(new FallenAngel(knight, screenWidth / 2, screenHeight - groundLevelHeight, screenWidth));
+        level3Enemies.add(new Golem(knight, screenWidth / 3, screenHeight - groundLevelHeight, screenWidth));
         levels.add(new Level(level3Enemies, knight, screenWidth));
+        ArrayList<Enemy> level4Enemies = new ArrayList<>();
+        level4Enemies.add(new Reaper(knight, screenWidth / 2, screenHeight - groundLevelHeight, screenWidth));
+        level4Enemies.add(new Reaper(knight, screenWidth * 3 / 4, screenHeight - groundLevelHeight, screenWidth));
+        level4Enemies.add(new Reaper(knight, screenWidth , screenHeight - groundLevelHeight, screenWidth));
+        levels.add(new Level(level4Enemies, knight, screenWidth));
     }
 
     @Override
