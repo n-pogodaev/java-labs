@@ -276,7 +276,17 @@ public class Model implements CarFactoryStatistics {
         for (Thread t: threads) {
             t.interrupt();
         }
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         assemblersThreadPool.interrupt();
+        try {
+            Thread.sleep(5);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         carStock.reset();
         engineStock.reset();
         bodyStock.reset();
