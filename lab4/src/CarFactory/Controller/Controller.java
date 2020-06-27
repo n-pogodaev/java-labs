@@ -19,7 +19,17 @@ public class Controller {
         ActionListener startListener = actionEvent -> {
             model.start();
         };
-        view.addStartListener(startListener);
+        ActionListener resetListener = actionEvent -> {
+            model.stopAndReset();
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            model.stopAndReset();
+            view.reset();
+        };
+        view.addButtonListeners(startListener, resetListener);
     }
 
     public void start() {

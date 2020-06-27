@@ -30,4 +30,12 @@ public class ThreadPool {
         }
         return isTaskAddedToQueue;
     }
+
+    public void interrupt() {
+        for (Thread t : threads) {
+            t.interrupt();
+        }
+        threads.clear();
+        tasks.clear();
+    }
 }

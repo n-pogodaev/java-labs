@@ -21,7 +21,7 @@ public class StockController implements Runnable, TaskListener {
         this.dealersNum = dealersNum;
     }
 
-    private boolean waitStock() {
+    private void waitStock() {
         synchronized (controllerLock) {
             try {
                 controllerLock.wait();
@@ -30,7 +30,6 @@ public class StockController implements Runnable, TaskListener {
                 Thread.currentThread().interrupt();
             }
         }
-        return true;
     }
 
     @Override

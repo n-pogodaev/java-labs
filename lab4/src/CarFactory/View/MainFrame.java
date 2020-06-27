@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
     private final FactoryLabel totalSold = new FactoryLabel("Total cars sold: ", 0);
 
     private final JButton startButton = new JButton("Start");
+    private final JButton resetButton = new JButton("Reset");
 
     private final JPanel mainPanel = new JPanel();
 
@@ -73,9 +74,11 @@ public class MainFrame extends JFrame {
         mainPanel.add(Box.createRigidArea(new Dimension(1, 10)));
 
         startButton.setAlignmentX(CENTER_ALIGNMENT);
+        resetButton.setAlignmentX(CENTER_ALIGNMENT);
         JPanel buttonPanel = new JPanel();
         buttonPanel.setOpaque(false);
         buttonPanel.add(startButton);
+        buttonPanel.add(resetButton);
 
         mainPanel.add(buttonPanel);
         add(mainPanel, BorderLayout.CENTER);
@@ -102,6 +105,10 @@ public class MainFrame extends JFrame {
 
     public void addStartButtonListener(ActionListener al) {
         startButton.addActionListener(al);
+    }
+
+    public void addResetButtonListener(ActionListener al) {
+        resetButton.addActionListener(al);
     }
 
     public void update(int accessoryStockSize, int totalAccessoriesSupplied, int bodyStockSize, int totalBodiesSupplied,

@@ -1,7 +1,6 @@
 package ThreadPool;
 
 import java.util.Queue;
-import java.util.concurrent.ArrayBlockingQueue;
 
 public class PooledThread implements Runnable {
     private final Queue<ThreadPoolTask> tasks;

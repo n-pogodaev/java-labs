@@ -33,6 +33,13 @@ public class Model implements CarFactoryStatistics {
     private final EngineSupplier engineSupplier;
     private final ArrayList<AccessorySupplier> accessorySuppliers;
     private final ArrayList<CarDealer> dealers;
+    private final ThreadPool assemblersThreadPool;
+    private final StockController carStockController;
+    private final Stock accessoryStock;
+    private final Stock engineStock;
+    private final Stock bodyStock;
+    private final Stock carStock;
+
 
     public Model(Properties props) {
         int accessoryStockSize = Integer.parseInt(props.getProperty("AccessoryStockSize", "100"));
@@ -44,18 +51,18 @@ public class Model implements CarFactoryStatistics {
         int dealersNum = Integer.parseInt(props.getProperty("Dealers", "5"));
         boolean logSales = Boolean.parseBoolean(props.getProperty("LogSales", "true"));
 
-        Stock accessoryStock = new Stock(accessoryStockSize);
-        Stock engineStock = new Stock(engineStockSize);
-        Stock bodyStock = new Stock(bodyStockSize);
+        accessoryStock = new Stock(accessoryStockSize);
+        engineStock = new Stock(engineStockSize);
+        bodyStock = new Stock(bodyStockSize);
         Object carStockControllerLock = new Object();
-        Stock carStock = new Stock(productStockSize, carStockControllerLock);
-        ThreadPool assemblersThreadPool = new ThreadPool(assemblersNum);
+        carStock = new Stock(productStockSize, carStockControllerLock);
+        assemblersThreadPool = new ThreadPool(assemblersNum);
         LinkedList<Stock> inAssemblingStocks = new LinkedList<>();
         inAssemblingStocks.add(accessoryStock);
         inAssemblingStocks.add(bodyStock);
         inAssemblingStocks.add(engineStock);
         CarAssembler assembler = new CarAssembler(inAssemblingStocks, carStock, this);
-        StockController carStockController = new StockController(carStock, assemblersThreadPool, assembler, this,
+        carStockController = new StockController(carStock, assemblersThreadPool, assembler, this,
                 carStockControllerLock, dealersNum);
         bodySupplier = new BodySupplier(bodyStock, BODY_DEFAULT_MSEC, this);
         engineSupplier = new EngineSupplier(engineStock, ENGINE_DEFAULT_MSEC, this);
@@ -71,22 +78,12 @@ public class Model implements CarFactoryStatistics {
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
-
         }
         dealers = new ArrayList<>();
         for (int i = 0; i < dealersNum; ++i) {
             dealers.add(new CarDealer(carStock, DEALER_DEFAULT_MSEC, logFile, this));
         }
         threads = new ArrayList<>();
-        threads.add(new Thread(bodySupplier));
-        threads.add(new Thread(engineSupplier));
-        for (AccessorySupplier as : accessorySuppliers) {
-            threads.add(new Thread(as));
-        }
-        threads.add(new Thread(carStockController));
-        for (Dealer d : dealers) {
-            threads.add(new Thread(d));
-        }
         PrintStream finalLogFile = logFile;
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             if (finalLogFile != null) {
@@ -95,6 +92,7 @@ public class Model implements CarFactoryStatistics {
             for (Thread t: threads) {
                 t.interrupt();
             }
+            assemblersThreadPool.interrupt();
         }));
     }
 
@@ -109,6 +107,16 @@ public class Model implements CarFactoryStatistics {
     }
 
     public void start() {
+        threads.clear();
+        threads.add(new Thread(bodySupplier));
+        threads.add(new Thread(engineSupplier));
+        for (AccessorySupplier as : accessorySuppliers) {
+            threads.add(new Thread(as));
+        }
+        threads.add(new Thread(carStockController));
+        for (Dealer d : dealers) {
+            threads.add(new Thread(d));
+        }
         for (Thread t : threads) {
             t.start();
         }
@@ -262,5 +270,27 @@ public class Model implements CarFactoryStatistics {
 
     public int getTotalSold() {
         return totalSold;
+    }
+
+    public void stopAndReset() {
+        for (Thread t: threads) {
+            t.interrupt();
+        }
+        assemblersThreadPool.interrupt();
+        carStock.reset();
+        engineStock.reset();
+        bodyStock.reset();
+        accessoryStock.reset();
+        totalAccessories = 0;
+        accessoryStockSize = 0;
+        totalBodies = 0;
+        bodyStockSize = 0;
+        totalEngines = 0;
+        engineStockSize = 0;
+        totalCars = 0;
+        carStockSize = 0;
+        currentAssemblingRequests = 0;
+        totalSold = 0;
+        notifySubscribers();
     }
 }

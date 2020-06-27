@@ -66,4 +66,8 @@ public class Stock {
     public synchronized int getSize() {
         return things.size();
     }
+
+    public void reset() {
+        things.clear();
+    }
 }

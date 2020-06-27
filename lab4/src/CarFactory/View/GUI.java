@@ -31,8 +31,14 @@ public class GUI implements View, Subscriber {
     }
 
     @Override
-    public void addStartListener(ActionListener startListener) {
+    public void addButtonListeners(ActionListener startListener, ActionListener resetListener) {
         frame.addStartButtonListener(startListener);
+        frame.addResetButtonListener(resetListener);
+    }
+
+    @Override
+    public void reset() {
+        EventQueue.invokeLater(() -> frame.update(0,0,0,0,0,0,0,0,0,0));
     }
 
     @Override
